@@ -4,7 +4,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
+    "build": "tsc && node -e \"const fs=require('fs'),path=require('path');function cp(s,d){if(!fs.existsSync(d))fs.mkdirSync(d,{recursive:true});fs.readdirSync(s).forEach(f=>{const sp=path.join(s,f),dp=path.join(d,f);fs.statSync(sp).isDirectory()?cp(sp,dp):f.endsWith('.js')&&fs.copyFileSync(sp,dp)})}cp('src','dist')\"",
     "start": "node dist/server.js",
     "db:test": "ts-node db-test.ts"
   },
